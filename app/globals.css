@@ -127,10 +127,11 @@ p { text-wrap: pretty; }
 .homeHero::before { content: ""; position: absolute; z-index: -1; width: min(38rem, 55vw); aspect-ratio: 1; right: -12rem; top: -15rem; border-radius: 50%; background: radial-gradient(circle, rgb(232 221 200 / .9), transparent 70%); }
 .heroLineArt { position: absolute; z-index: -1; right: 0; bottom: 0; width: min(46rem, 54vw); height: auto; opacity: .18; pointer-events: none; }
 .homeHeroGrid, .twoColumn, .productHeroGrid, .contactLayout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(2rem, 5vw, 5.5rem); }
-.homeHeroGrid { min-height: 580px; }
+.homeHeroGrid { min-height: 580px; grid-template-columns: minmax(0, 1.1fr) minmax(0, .95fr); }
 .homeHeroGrid > div:first-child { animation: rise-in .7s ease both; }
 .heroImage, .twoColumn > img { width: 100%; max-height: 620px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 22px 50px rgb(47 39 31 / .12); }
 .heroImage { aspect-ratio: 4 / 3; animation: rise-in .8s .08s ease both; }
+.homeHero h1 { max-width: 18ch; }
 .homeHero .lead { max-width: 39ch; }
 .homeHero .actions { max-width: 34rem; }
 .heroProof { display: flex; flex-wrap: wrap; gap: .65rem 1.25rem; margin-top: var(--space-xl); color: var(--color-text-secondary); font: var(--font-body-sm); }
@@ -279,6 +280,9 @@ p { text-wrap: pretty; }
 .contactForm button[type="submit"] { width: 100%; margin-top: var(--space-xs); }
 @keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .homeHeroGrid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+}
 @media (max-width: 1023px) {
   .container { width: min(calc(100% - 2 * var(--container-gutter-tablet)), var(--container-max)); }
   .section, .pageShell, .pageHero { padding-block: var(--space-3xl); }

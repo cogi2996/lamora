@@ -162,3 +162,13 @@ The brewing-method cards were compared with current coffee reference-card patter
 - `npm run qa`: đạt, kiểm tra 7 route và 11 asset.
 - Browser audit at 1440×900 and 390×844: three cards render, no horizontal overflow, image ratio stays consistent, and each ratio remains visible in the card footer.
 - Impeccable detector CLI entrypoint was attempted but unavailable in this install; the package fallback returned no findings for `app/huong-dan-pha/page.tsx`.
+
+## Home hero title spacing audit — 29/08/2026
+
+The headline “Một hành trình, hai cách thưởng thức.” was visually compressed into three short lines because the copy column inherited a 0.9/1.1 grid split. The fix keeps the existing type scale and brand voice, gives the copy column a wider 1.1/0.95 split on desktop, and restores the previous image-first balance at intermediate widths.
+
+### Verification
+
+- Desktop 1280px: headline now resolves to two lines (567px rendered width, 134px block height) without colliding with the image.
+- Tablet 1024px: the original image-weighted split is preserved to avoid an undersized media column.
+- Mobile 390px: the headline returns to the full single-column width (336px), with no horizontal overflow.
