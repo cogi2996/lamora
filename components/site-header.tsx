@@ -42,11 +42,11 @@ export function SiteHeader() {
           className={`${styles.navigation} ${open ? styles.open : ""}`}
         >
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href} onClick={() => setOpen(false)} aria-current={pathname === item.href || (item.href === "/san-pham" && pathname.startsWith("/san-pham/")) ? "page" : undefined}>
+            <Link className={styles.navLink} key={item.href} href={item.href} onClick={() => setOpen(false)} aria-current={pathname === item.href || (item.href === "/san-pham" && pathname.startsWith("/san-pham/")) ? "page" : undefined}>
               {item.label}
             </Link>
           ))}
-          <Link className="button buttonPrimary" href="/san-pham">
+          <Link className={`${styles.cta} button buttonPrimary`} href="/san-pham">
             Khám phá sản phẩm
           </Link>
           <Link className={styles.language} href="/en" lang="en">EN</Link>

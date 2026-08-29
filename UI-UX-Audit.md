@@ -34,6 +34,18 @@ The repeated “Thông tin Lamora.” callout was adding a second heading and a 
 - The note remains readable on both light surfaces and the dark brewing hero, with no layout overflow introduced.
 - Impeccable detector and project type/lint/build/QA checks are rerun after this pass.
 
+## Navigation audit — 29/08/2026
+
+The primary navigation CTA was inheriting the text color and underline rules intended for text links. CSS Modules scoped the old `:not(.button)` selector, so the global `.button` class was not excluded; this produced muted text on the forest button and a stray underline on hover/mobile.
+
+### Fix verified
+
+- Navigation links now use an explicit `navLink` class; the product CTA uses an explicit `cta` class.
+- The CTA keeps the high-contrast action treatment: ivory text on forest background, 48px minimum height, and one arrow affordance.
+- Underline is reserved for the active/hover text links, uses the forest token, and is 2px for clear visibility; it never appears on the CTA or language switcher.
+- Mobile menu keeps 48px rows, a clear open/close state, and a full-width product CTA without visual collisions.
+- Desktop and mobile browser checks at 1440×900 and 390×844 confirmed no horizontal overflow and readable menu states.
+
 ## Tiêu chí chấm điểm
 
 | Tiêu chí | Trọng số | Điều kiện đạt |

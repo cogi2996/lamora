@@ -33,7 +33,7 @@
   font: var(--font-label);
 }
 
-.navigation > a:not(.button) {
+.navigation > .navLink {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -41,9 +41,10 @@
   color: var(--color-text-secondary);
   transition: color .2s ease;
 }
-.navigation > a:not(.button)::after { content: ""; position: absolute; left: 0; right: 0; bottom: 7px; height: 1px; background: var(--color-action-primary); transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
-.navigation > a:not(.button):hover, .navigation > a[aria-current="page"] { color: var(--color-text-primary); }
-.navigation > a:not(.button):hover::after, .navigation > a[aria-current="page"]::after { transform: scaleX(1); }
+.navigation > .navLink::after { content: ""; position: absolute; left: 0; right: 0; bottom: 7px; height: 2px; background: var(--color-action-primary); transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
+.navigation > .navLink:hover, .navigation > .navLink[aria-current="page"] { color: var(--color-text-primary); }
+.navigation > .navLink:hover::after, .navigation > .navLink[aria-current="page"]::after { transform: scaleX(1); }
+.navigation > .cta { white-space: nowrap; }
 .language { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border-left: 1px solid var(--color-border-default); padding-left: var(--space-md); color: var(--color-text-secondary); font-size: .75rem; letter-spacing: .12em; }
 .language:hover { color: var(--color-action-primary); }
 
@@ -85,13 +86,13 @@
   .navigation.open { display: flex; }
   .navigation > a { min-height: 48px; }
   .language { justify-content: flex-start; border-left: 0; border-top: 1px solid var(--color-border-default); padding: var(--space-sm) 0 0; }
-  .navigation > a:not(.button)::after { display: none; }
+  .navigation > .navLink::after { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .skipLink,
   .wordmark,
-  .navigation > a:not(.button),
+  .navigation > .navLink,
   .menuButton,
   .menuIcon i { transition: none; }
 }
