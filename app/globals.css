@@ -148,6 +148,7 @@ p { text-wrap: pretty; }
 .storyIntroInner > * { max-width: 40rem; }
 .storyIntro h1, .brewIntro h1 { color: var(--color-signature-text-primary); }
 .storyIntro .lead, .brewIntro .lead { color: var(--color-signature-text-secondary); }
+.storyIntro .lead { max-width: 44rem; }
 .storyIntro .eyebrow, .brewIntro .eyebrow { color: var(--color-focus-ring); }
 .storyHarvest .twoColumn { align-items: center; }
 .storyHarvest img { aspect-ratio: 16 / 10; object-fit: cover; }

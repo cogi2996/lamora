@@ -46,6 +46,17 @@ The primary navigation CTA was inheriting the text color and underline rules int
 - Mobile menu keeps 48px rows, a clear open/close state, and a full-width product CTA without visual collisions.
 - Desktop and mobile browser checks at 1440×900 and 390×844 confirmed no horizontal overflow and readable menu states.
 
+## Story hero typography audit — 29/08/2026
+
+The story hero lead was constrained by the shared 40rem child width. At a wide desktop viewport, that measure wrapped the final “sử dụng.” onto a short second line, creating a false visual indent and weakening the editorial rhythm.
+
+### Fix verified
+
+- The headline keeps its intentional two-line display treatment and remains aligned to the eyebrow and lead.
+- The story lead now uses a 44rem maximum measure, allowing the full sentence to resolve to one balanced desktop line (679px rendered at 1920px).
+- At 390px, the lead remains constrained by the mobile container and wraps into two balanced lines (315px / 322px), with no horizontal overflow.
+- The hero's reading order and contrast remain unchanged: eyebrow → headline → supporting copy over the darkened landscape.
+
 ## Tiêu chí chấm điểm
 
 | Tiêu chí | Trọng số | Điều kiện đạt |
