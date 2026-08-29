@@ -17,8 +17,26 @@ export default function BrewingPage() {
         </div>
       </section>
       <section className="container pageShell pageContent pageContent--brewing">
-        <div className="brewGrid">
-          {brewMethods.map((method) => <article className="brewCard" key={method.slug}><Image src={method.image} alt={method.imageAlt} width={1120} height={1400} sizes="(max-width: 767px) 82vw, 33vw" /><Eyebrow>{method.ratio}</Eyebrow><h2>{method.name}</h2><p>Giữ một yếu tố ổn định, nếm lại và điều chỉnh độ xay, nhiệt độ hoặc thời gian pha.</p></article>)}
+        <div className="brewGrid" aria-label="Các phương pháp pha">
+          {brewMethods.map((method, index) => (
+            <article className="brewCard" key={method.slug}>
+              <div className="brewCardMedia">
+                <Image src={method.image} alt={method.imageAlt} width={1120} height={1400} sizes="(max-width: 767px) 86vw, 33vw" />
+                <span className="brewCardIndex" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <div className="brewCardBody">
+                <div className="brewCardHeading">
+                  <span className="brewCardKicker">Phương pháp pha</span>
+                  <h2>{method.name}</h2>
+                </div>
+                <p>{method.note}</p>
+                <div className="brewCardMeta">
+                  <span>Tỷ lệ khởi điểm</span>
+                  <strong>{method.ratio}</strong>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
         <section className="brewSteps" aria-labelledby="brew-steps-title">
           <header><Eyebrow>Điều chỉnh theo khẩu vị</Eyebrow><h2 id="brew-steps-title">Một thay đổi mỗi lần.</h2><p>Giữ trải nghiệm dễ hiểu: chỉ thay một yếu tố, ghi nhận kết quả rồi nếm lại.</p></header>

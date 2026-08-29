@@ -134,3 +134,31 @@ The reusable audit brief is captured in [`UIUX-AUDIT-PROMPT.md`](./UIUX-AUDIT-PR
 - Add a dedicated English navigation/footer copy set if `/en` becomes a full locale rather than a short English landing page.
 - Replace the preview contact path with the production lead endpoint before launch; test timeout, retry and duplicate-submit behavior against the real service.
 - Transcode the large editorial images/videos and re-measure LCP on a throttled mobile profile.
+
+## Brewing card redesign audit — 29/08/2026
+
+The brewing-method cards were compared with current coffee reference-card patterns: show the method and ratio as a quick reference, keep the image dominant, and reserve detail for a short actionable cue. The card remains editorial and non-interactive because the three methods do not yet have dedicated detail routes.
+
+### Findings and fixes
+
+| Priority | Finding | Applied fix | Verification |
+| --- | --- | --- | --- |
+| P1 | All cards had the same generic sentence, so users could not distinguish the adjustment cue for each method at a glance. | Added one concise, method-specific brewing note for Phin, Pour over and French press. | Copy scan and production build pass. |
+| P1 | Ratio metadata competed with the title in an eyebrow row and was easy to miss after the image. | Moved it into a dedicated “Tỷ lệ khởi điểm” metadata block with a divider and stronger label/value hierarchy. | Desktop and mobile visual pass; 16px body text and no overflow. |
+| P2 | The cards read as three interchangeable bordered boxes with little orientation across the set. | Added numbered image markers, subtle warm surface variation and a quiet lift/border response on the card container (the image itself does not animate). | Desktop hover/reduced-motion CSS review; no image transform. |
+| P2 | Mobile cards were narrow and required more horizontal swipes to compare methods. | Increased the snap-card width from 82% to 86% while preserving the next-card peek and one-handed scroll. | 390px browser check: 289px card width, 16px body copy, no horizontal page overflow. |
+
+### Reference patterns used
+
+- BrewCard treats method, dose, ratio, grind, temperature and time as quick-reference fields rather than burying them in prose.
+- SIP-TO-SUIT groups brewing methods and parameters for fast retrieval and comparison.
+- Product-card redesign research supports larger imagery, stronger titles and segmented information for better scanning.
+
+### Verification
+
+- `npm run typecheck`: đạt.
+- `npm run lint`: đạt.
+- `npm run build`: đạt với 9 route.
+- `npm run qa`: đạt, kiểm tra 7 route và 11 asset.
+- Browser audit at 1440×900 and 390×844: three cards render, no horizontal overflow, image ratio stays consistent, and each ratio remains visible in the card footer.
+- Impeccable detector CLI entrypoint was attempted but unavailable in this install; the package fallback returned no findings for `app/huong-dan-pha/page.tsx`.
