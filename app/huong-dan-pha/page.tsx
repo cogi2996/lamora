@@ -18,7 +18,7 @@ export default function BrewingPage() {
       </section>
       <section className="container pageShell pageContent pageContent--brewing">
         <div className="brewGrid">
-          {brewMethods.map((method) => <article className="brewCard" key={method.slug}><Image src={method.image} alt={method.imageAlt} width={1120} height={1400} /><Eyebrow>{method.ratio}</Eyebrow><h2>{method.name}</h2><p>Giữ một yếu tố ổn định, nếm lại và điều chỉnh độ xay, nhiệt độ hoặc thời gian pha.</p></article>)}
+          {brewMethods.map((method) => <article className="brewCard" key={method.slug}><Image src={method.image} alt={method.imageAlt} width={1120} height={1400} sizes="(max-width: 767px) 82vw, 33vw" /><Eyebrow>{method.ratio}</Eyebrow><h2>{method.name}</h2><p>Giữ một yếu tố ổn định, nếm lại và điều chỉnh độ xay, nhiệt độ hoặc thời gian pha.</p></article>)}
         </div>
         <section className="brewSteps" aria-labelledby="brew-steps-title">
           <header><Eyebrow>Điều chỉnh theo khẩu vị</Eyebrow><h2 id="brew-steps-title">Một thay đổi mỗi lần.</h2><p>Giữ trải nghiệm dễ hiểu: chỉ thay một yếu tố, ghi nhận kết quả rồi nếm lại.</p></header>

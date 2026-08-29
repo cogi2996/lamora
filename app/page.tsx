@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <main id="main-content">
       <section className="homeHero">
-        <Image className="heroLineArt" src="/images/brand/lamora-mountain-line-art.svg" alt="" aria-hidden="true" width={720} height={220} />
+        <Image className="heroLineArt" src="/images/brand/lamora-mountain-line-art.svg" alt="" aria-hidden="true" width={720} height={220} sizes="(max-width: 767px) 80vw, 54vw" />
         <div className="container homeHeroGrid">
           <div>
             <Eyebrow>Lamora Coffee · Nguyên bản từ đất lành</Eyebrow>
@@ -22,7 +22,7 @@ export default function HomePage() {
               <span>Rang mộc tại Việt Nam</span>
             </div>
           </div>
-          <Image className="heroImage" src="/images/editorial/lamora-origin-landscape.jpg" alt="Phong cảnh vùng trồng cà phê Lamora" width={1536} height={1024} priority />
+          <Image className="heroImage" src="/images/editorial/lamora-origin-landscape.jpg" alt="Phong cảnh vùng trồng cà phê Lamora" width={1536} height={1024} sizes="(max-width: 767px) 100vw, 50vw" priority />
         </div>
       </section>
       <TrustStrip />
@@ -32,7 +32,7 @@ export default function HomePage() {
       </section>
       <section className="section surfaceSection">
         <div className="container twoColumn">
-          <Image src="/images/editorial/lamora-home-brewing-ritual.jpg" alt="Nghi thức pha cà phê tại nhà" width={1536} height={1024} />
+          <Image src="/images/editorial/lamora-home-brewing-ritual.jpg" alt="Nghi thức pha cà phê tại nhà" width={1536} height={1024} sizes="(max-width: 767px) 100vw, 50vw" />
           <div><SectionHeader eyebrow="Từ hạt đến tách" title="Bắt đầu bằng một tỷ lệ, rồi điều chỉnh theo khẩu vị." body="Khám phá ba phương pháp pha dành cho Original Blend." /><Link className="textLink" href="/huong-dan-pha">Xem hướng dẫn pha</Link></div>
         </div>
       </section>

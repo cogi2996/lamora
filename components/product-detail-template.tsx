@@ -21,7 +21,7 @@ export function ProductDetailTemplate({ product }: { product: Product }) {
           </div>
           <div className="productHeroMedia">
             <span className="productHeroMediaLabel">Lamora Coffee · {product.line === "signature" ? "Cho quán" : "Pha tại nhà"}</span>
-            <Image className="packshot" src={product.image} alt={product.imageAlt} width={2048} height={2048} priority />
+            <Image className="packshot" src={product.image} alt={product.imageAlt} width={2048} height={2048} sizes="(max-width: 767px) 78vw, 50vw" priority />
           </div>
         </div>
       </section>
@@ -40,7 +40,7 @@ export function ProductDetailTemplate({ product }: { product: Product }) {
       </section>
       <section className="section surfaceSection">
         <div className="container twoColumn">
-          <Image src="/images/editorial/lamora-coffee-branch.jpg" alt="Cành cà phê trong vùng nguyên liệu" width={1120} height={1400} />
+          <Image src="/images/editorial/lamora-coffee-branch.jpg" alt="Cành cà phê trong vùng nguyên liệu" width={1120} height={1400} sizes="(max-width: 767px) 100vw, 50vw" />
           <SectionHeader eyebrow="Nguyên bản từ đất lành" title="Một trải nghiệm rõ ràng từ sản phẩm đến cách dùng." body="Lamora chọn hạt cà phê từ vùng cao nguyên Việt Nam, rang và đóng gói tại Việt Nam để giữ trọn nét nguyên bản trong mỗi lần pha." />
         </div>
       </section>

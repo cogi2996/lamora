@@ -3,6 +3,26 @@
 Ngày audit: 28/08/2026  
 Phạm vi: các route bán hàng tiếng Việt, trang tiếng Anh, desktop và mobile.
 
+## Impeccable pass — 29/08/2026
+
+| Dimension | Score | Evidence |
+| --- | ---: | --- |
+| Accessibility | 4/4 | Landmark, skip link, labelled form controls, visible focus ring, 48px controls and intentional reduced-motion fallback. |
+| Performance | 3/4 | Responsive `sizes` added to content images; decorative videos use `preload="none"`; source media remains large and should be transcoded at release. |
+| Responsive | 4/4 | At 390px the message and CTA precede the hero image; measured `scrollWidth` does not exceed the viewport. |
+| Theming | 4/4 | Colors, type, spacing, radii and component rules are captured in `DESIGN.md` and `.impeccable/design.json`. |
+| Implementation integrity | 4/4 | `npx impeccable@3.6.0 detect --json app components` returned no findings. |
+| **Total** | **19/20** | **Excellent; remaining work is production integration and media transcoding.** |
+
+### Changes verified in this pass
+
+- Mobile home hero now reads headline → supporting copy → CTA → proof → image.
+- `/san-pham` uses a compact decision card: audience, flavor, roast, starting price and one clear next action; operational detail stays on product detail pages.
+- Hero, editorial and packshot images declare responsive `sizes`; ambient videos keep posters and defer media loading.
+- Reduced-motion uses explicit selectors and preserves poster/content states instead of globally killing every transition.
+- Contact form validates minimum lengths, prevents duplicate submission, times out endpoint requests after 8 seconds, preserves input on failure, and labels the no-endpoint path as a preview rather than claiming delivery.
+- Visual browser audit at 390×844 and 1440×900 confirmed no horizontal overflow; the mobile CTA appears before the image.
+
 ## Tiêu chí chấm điểm
 
 | Tiêu chí | Trọng số | Điều kiện đạt |

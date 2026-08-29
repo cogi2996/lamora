@@ -21,9 +21,9 @@ export function InfoNotice({ children, tone = "info" }: { children: ReactNode; t
   return <aside className={`infoNotice infoNotice--${tone}`}><strong>{tone === "success" ? "Đã tiếp nhận." : "Thông tin Lamora."}</strong> {children}</aside>;
 }
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({ product, compact = false }: { product: Product; compact?: boolean }) {
   return (
-    <article className={`productCard productCard--${product.line}`}>
+    <article className={`productCard productCard--${product.line}${compact ? " productCard--compact" : ""}`}>
       <div className="productCardImage">
         <span className="productCardLine">{product.line === "signature" ? "Signature series" : "Original series"}</span>
         <Image src={product.image} alt={product.imageAlt} width={2048} height={2048} sizes="(max-width: 767px) 80vw, 40vw" />
@@ -31,14 +31,20 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="productCardBody">
         <Eyebrow>{product.audience}</Eyebrow>
         <h3>{product.name}</h3>
-        <p>{product.description}</p>
+        <p>{compact ? product.description.split(",")[0] + "." : product.description}</p>
         <p className="productCardFlavor">{product.flavor.join(" · ")}</p>
         <p className="meta">{product.roast}</p>
-        <ul className="skuList" aria-label="Quy cách sản phẩm">
-          {product.sku.map((sku) => <li key={sku.code}><span><strong>{sku.weight}</strong><small>{sku.code}</small></span><b>{sku.price}</b></li>)}
-        </ul>
-        <p className="meta">Có thể đặt qua {product.purchaseChannels.join(" · ")}</p>
-        {product.b2bMinimum ? <p className="meta">Điều kiện quán: {product.b2bMinimum}.</p> : null}
+        {compact ? (
+          <p className="productCardPrice"><strong>Từ {product.sku[0].price}</strong><span> / {product.sku[0].weight}{product.sku.length > 1 ? ` · ${product.sku.length} quy cách` : ""}</span></p>
+        ) : (
+          <>
+            <ul className="skuList" aria-label="Quy cách sản phẩm">
+              {product.sku.map((sku) => <li key={sku.code}><span><strong>{sku.weight}</strong><small>{sku.code}</small></span><b>{sku.price}</b></li>)}
+            </ul>
+            <p className="meta">Có thể đặt qua {product.purchaseChannels.join(" · ")}</p>
+            {product.b2bMinimum ? <p className="meta">Điều kiện quán: {product.b2bMinimum}.</p> : null}
+          </>
+        )}
         <div className="productCardActions">
           <Link className="button buttonPrimary" href={`/san-pham/${product.slug}`}>Xem sản phẩm</Link>
           <Link className="textLink" href={`/lien-he?nhom=${product.line === "signature" ? "b2b" : "b2c"}`}>Tư vấn</Link>

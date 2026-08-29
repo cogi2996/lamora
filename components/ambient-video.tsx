@@ -15,7 +15,7 @@ export function AmbientVideo({ src, poster, className = "" }: AmbientVideoProps)
 
   return (
     <div className={`ambientVideo ${className}`.trim()} aria-hidden="true" style={style}>
-      <video autoPlay muted loop playsInline preload="metadata" poster={poster}>
+      <video autoPlay muted loop playsInline preload="none" poster={poster}>
         <source src={src} type="video/mp4" />
       </video>
       <span className="ambientVideoScrim" />

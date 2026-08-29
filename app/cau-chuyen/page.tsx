@@ -16,10 +16,10 @@ export default function StoryPage() {
           <p className="lead">Một cách kể điềm tĩnh về vùng nguyên liệu, hạt cà phê và trải nghiệm sử dụng.</p>
         </div>
       </section>
-      <section className="section surfaceSection"><div className="container twoColumn"><Image src="/images/editorial/lamora-roasting-process.jpg" alt="Quá trình rang cà phê Lamora" width={1120} height={1400} /><SectionHeader eyebrow="Từ vùng trồng đến mẻ rang" title="Giữ sự rõ ràng trong từng bước." body="Lamora chọn hạt cà phê từ vùng cao nguyên Việt Nam, rang mộc theo từng mẻ và đóng gói tại Thành phố Hồ Chí Minh." /></div></section>
+      <section className="section surfaceSection"><div className="container twoColumn"><Image src="/images/editorial/lamora-roasting-process.jpg" alt="Quá trình rang cà phê Lamora" width={1120} height={1400} sizes="(max-width: 767px) 100vw, 50vw" /><SectionHeader eyebrow="Từ vùng trồng đến mẻ rang" title="Giữ sự rõ ràng trong từng bước." body="Lamora chọn hạt cà phê từ vùng cao nguyên Việt Nam, rang mộc theo từng mẻ và đóng gói tại Thành phố Hồ Chí Minh." /></div></section>
       <section className="section container storyHarvest">
         <div className="twoColumn">
-          <Image src="/images/editorial/lamora-coffee-harvest-detail.png" alt="Cành cà phê với quả chín giữa triền đồi" width={1672} height={941} />
+          <Image src="/images/editorial/lamora-coffee-harvest-detail.png" alt="Cành cà phê với quả chín giữa triền đồi" width={1672} height={941} sizes="(max-width: 767px) 100vw, 50vw" />
           <SectionHeader eyebrow="Những chi tiết làm nên hương vị" title="Nhìn kỹ hơn vào nơi câu chuyện bắt đầu." body="Cành lá, quả chín và triền đồi là những hình ảnh Lamora dùng để kể về một tách cà phê gần gũi, rõ ràng và có chủ đích." />
         </div>
       </section>
