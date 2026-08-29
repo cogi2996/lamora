@@ -153,7 +153,7 @@ p { text-wrap: pretty; }
 .storyHarvest img { aspect-ratio: 16 / 10; object-fit: cover; }
 .brewIntroInner { position: relative; z-index: 1; padding-block: clamp(5rem, 10vw, 7rem); }
 .brewIntro .pageIntro { margin-bottom: var(--space-xl); }
-.brewIntro .infoNotice { max-width: 42rem; margin-block: 0; border-color: rgb(255 248 237 / .36); border-top-color: var(--color-focus-ring); background: rgb(255 253 248 / .9); }
+.brewIntro .infoNotice { max-width: 42rem; margin-block: 0; color: var(--color-signature-text-secondary); }
 .pageContent--brewing { padding-top: var(--space-3xl); }
 
 .productGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2.25rem); }
@@ -200,10 +200,9 @@ p { text-wrap: pretty; }
 
 .contactBand { margin-block: var(--space-4xl); padding: clamp(1.75rem, 4vw, 3.5rem); background: linear-gradient(110deg, var(--color-signature-surface), var(--color-bg-surface)); border: 1px solid rgb(118 88 68 / .28); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: space-between; gap: var(--space-xl); box-shadow: 0 16px 40px rgb(47 39 31 / .06); }
 .contactBand h2 { margin-bottom: 0; }
-.infoNotice { margin-block: var(--space-lg); padding: var(--space-md) var(--space-lg); border: 1px solid var(--color-border-default); border-top: 2px solid var(--color-focus-ring); border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-bg-surface) 72%, transparent); color: var(--color-text-secondary); }
-.infoNotice strong { color: var(--color-text-primary); }
-.infoNotice--success { border-top-color: var(--color-feedback-success); }
-.infoNotice--success strong { color: var(--color-feedback-success); }
+.infoNotice { display: flex; align-items: flex-start; gap: .65rem; margin-block: var(--space-lg); color: var(--color-text-secondary); font: var(--font-body-sm); }
+.infoNotice::before { content: ""; flex: 0 0 .45rem; width: .45rem; height: .45rem; margin-top: .45rem; border-radius: 50%; background: var(--color-focus-ring); }
+.infoNotice--success::before { background: var(--color-feedback-success); }
 
 .productHero { padding-block: clamp(4.5rem, 8vw, 8rem); min-height: 680px; }
 .productHero--signature { background: radial-gradient(circle at 72% 44%, rgb(232 221 200 / .72), transparent 34%), linear-gradient(110deg, var(--color-signature-surface), var(--color-bg-canvas) 72%); }

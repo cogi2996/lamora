@@ -36,7 +36,7 @@ export function ProductDetailTemplate({ product }: { product: Product }) {
           <div><dt>Tình trạng</dt><dd>{product.sku.map((item) => item.availability).join(" · ")}</dd></div>
         </dl>
         <ProductSizeSelector options={product.sku.map((item) => ({ size: item.weight, code: item.code, price: item.price }))} />
-        <InfoNotice>Đặt hàng qua {product.purchaseChannels.join(", ")}. {product.b2bMinimum ? `Đơn quán bắt đầu từ ${product.b2bMinimum.toLowerCase()}.` : "Đơn tại nhà được đóng gói theo từng quy cách."}</InfoNotice>
+        <InfoNotice>Đặt hàng qua {product.purchaseChannels.join(", ")}. {product.b2bMinimum ? `Đơn quán: ${product.b2bMinimum.toLowerCase()}.` : "Đơn tại nhà được đóng gói theo từng quy cách."}</InfoNotice>
       </section>
       <section className="section surfaceSection">
         <div className="container twoColumn">

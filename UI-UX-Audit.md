@@ -23,6 +23,17 @@ Phạm vi: các route bán hàng tiếng Việt, trang tiếng Anh, desktop và 
 - Contact form validates minimum lengths, prevents duplicate submission, times out endpoint requests after 8 seconds, preserves input on failure, and labels the no-endpoint path as a preview rather than claiming delivery.
 - Visual browser audit at 390×844 and 1440×900 confirmed no horizontal overflow; the mobile CTA appears before the image.
 
+## Impeccable distill pass — 29/08/2026
+
+The repeated “Thông tin Lamora.” callout was adding a second heading and a card-like interruption before the primary content. `InfoNotice` is now a quiet inline note with a small color marker, no generic bold label, and shorter guidance copy. It uses `role="note"` instead of creating an unnamed complementary landmark.
+
+### Audit result
+
+- `/san-pham`, `/huong-dan-pha`, `/lien-he`, product detail pages and `/en` all use the simplified notice treatment.
+- No notice retains the old bordered card, heavy top accent, or repeated “Thông tin Lamora.” label; the product detail note also removes the duplicated “từ từ” phrasing.
+- The note remains readable on both light surfaces and the dark brewing hero, with no layout overflow introduced.
+- Impeccable detector and project type/lint/build/QA checks are rerun after this pass.
+
 ## Tiêu chí chấm điểm
 
 | Tiêu chí | Trọng số | Điều kiện đạt |

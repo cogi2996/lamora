@@ -13,7 +13,7 @@ export default function BrewingPage() {
         <AmbientVideo src="/media/lamora-brewing-ritual-loop.mp4" poster="/images/editorial/lamora-brewing-ritual-loop-poster.png" />
         <div className="container brewIntroInner">
           <header className="pageIntro"><Eyebrow>Hướng dẫn pha</Eyebrow><h1>Một tỷ lệ vừa vặn, điều chỉnh theo khẩu vị.</h1><p className="lead">Ba cách pha Original Blend tại nhà.</p></header>
-          <InfoNotice>Các tỷ lệ dưới đây được cân chỉnh cho từng dụng cụ. Giữ một yếu tố ổn định, nếm lại rồi điều chỉnh theo khẩu vị.</InfoNotice>
+          <InfoNotice>Tỷ lệ đã được cân chỉnh cho từng dụng cụ. Giữ một yếu tố ổn định, nếm lại rồi điều chỉnh theo khẩu vị.</InfoNotice>
         </div>
       </section>
       <section className="container pageShell pageContent pageContent--brewing">

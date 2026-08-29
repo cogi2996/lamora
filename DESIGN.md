@@ -136,7 +136,7 @@ Lamora uses restrained tonal layering plus soft ambient shadows. Borders define 
 
 ## Shapes
 
-Large content surfaces use a 20px radius, controls use a 12px radius or pill when they are compact selectors, and the focus ring is always visible in gold. Borders are one pixel and warm; notices use a restrained top accent rather than a heavy side stripe.
+Large content surfaces use a 20px radius, controls use a 12px radius or pill when they are compact selectors, and the focus ring is always visible in gold. Borders are one pixel and warm; supporting notices stay inline with a quiet dot marker instead of becoming another card.
 
 ## Components
 

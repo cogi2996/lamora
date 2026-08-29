@@ -18,7 +18,7 @@ export function SectionHeader({ eyebrow, title, body }: { eyebrow: string; title
 }
 
 export function InfoNotice({ children, tone = "info" }: { children: ReactNode; tone?: "info" | "success" }) {
-  return <aside className={`infoNotice infoNotice--${tone}`}><strong>{tone === "success" ? "Đã tiếp nhận." : "Thông tin Lamora."}</strong> {children}</aside>;
+  return <p className={`infoNotice infoNotice--${tone}`} role="note">{children}</p>;
 }
 
 export function ProductCard({ product, compact = false }: { product: Product; compact?: boolean }) {
