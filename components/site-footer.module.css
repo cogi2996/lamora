@@ -1,0 +1,11 @@
+.footer { background: var(--color-signature-accent); color: var(--color-signature-text-primary); padding-block: clamp(3rem, 7vw, 5rem) var(--space-2xl); border-top: 1px solid rgb(255 248 237 / .16); }
+.grid { display: grid; grid-template-columns: 1.8fr .8fr 1.2fr; gap: clamp(2rem, 5vw, 5rem); }
+.logo { width: min(260px, 100%); height: auto; }
+.grid p { color: var(--color-signature-text-secondary); max-width: 36ch; }
+.heading { margin: 0 0 var(--space-sm); color: var(--color-signature-text-primary) !important; font: var(--font-eyebrow) !important; letter-spacing: .14em; text-transform: uppercase; }
+.links, .address { display: flex; flex-direction: column; gap: var(--space-sm); font: var(--font-body-sm); }
+.address { font-style: normal; }
+.links a, .address a { min-height: 44px; display: flex; align-items: center; }
+.links a, .address a { color: var(--color-signature-text-secondary); transition: color .2s ease, transform .2s ease; }
+.links a:hover, .address a:hover { color: var(--color-signature-text-primary); transform: translateX(3px); }
+@media (max-width: 767px) { .grid { grid-template-columns: 1fr; } .links a, .address a { min-height: 48px; } }
