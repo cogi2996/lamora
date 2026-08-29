@@ -195,3 +195,24 @@ The component accepts an optional `compareAtPrice` per SKU, but the current cata
 - `npm run lint`: pending final pass.
 - `npm run build`: pending final pass.
 - Browser audit at 1280px and 390px: no horizontal overflow (scrollbar delta only), 48px CTA target, no duplicate notice, and no unit/“quy cách” suffix in compact cards.
+
+## Product detail Figma parity pass — 29/08/2026
+
+The two product detail routes were compared with the supplied Figma reference. The earlier template stopped after a generic facts block and one shared editorial section; the new composition gives each line its own use context while keeping the same Lamora token system.
+
+### Findings and fixes
+
+| Priority | Finding | Applied fix | Verification |
+| --- | --- | --- | --- |
+| P1 | Hero lacked the Figma decision sequence: flavour cues, clear entry price and a contained product presentation. | Added line-specific hero surface, flavour/roast tags, prominent “Giá từ”, CTA pair, packshot card and SKU/weight metadata. | Desktop and 390px browser screenshots; no horizontal overflow and all hero content remains readable. |
+| P1 | Signature and Original shared one generic editorial block, so the use case was not clear. | Added dedicated cafe-workflow and home-brewing feature sections with product-specific copy and existing editorial assets. | Both routes render distinct section order/content; image alt text is present. |
+| P1 | Product evidence was compressed into one facts table and hid the profile story shown in Figma. | Added four scan-friendly highlights, a flavor-profile section and a facts/profile grouping before the purchase details. | DOM heading sequence and visual pass at desktop/mobile. |
+| P2 | Original’s 250g/500g choice was a text-only control with no visual comparison. | Upgraded the selector into responsive product-size cards with packshots, price and live SKU/status summary. | Selecting 500g updates `aria-pressed` and the live summary; both images have accurate alt text. |
+
+### Verification
+
+- `npm run typecheck`: đạt.
+- `npm run lint`: đạt.
+- `npm run qa`: đạt, kiểm tra 7 route và 11 asset.
+- `npx --yes impeccable@3.6.0 detect --json --scope layout components/product-detail-template.tsx components/product-size-selector.tsx app/globals.css lib/content.ts`: no findings.
+- Browser audit at 1440×720 and 390×844: both routes render without horizontal overflow; mobile selector has two accessible cards for Original; Signature hero uses the dark Figma-aligned surface while Original retains the light surface.
