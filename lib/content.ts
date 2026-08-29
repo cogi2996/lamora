@@ -9,7 +9,7 @@ export type Product = {
   description: string;
   flavor: readonly string[];
   roast: string;
-  sku: readonly { code: string; weight: string; price: string; availability: string }[];
+  sku: readonly { code: string; weight: string; price: string; compareAtPrice?: string; availability: string }[];
   purchaseChannels: readonly string[];
   b2bMinimum?: string;
   image: string;

@@ -172,3 +172,26 @@ The headline “Một hành trình, hai cách thưởng thức.” was visually 
 - Desktop 1280px: headline now resolves to two lines (567px rendered width, 134px block height) without colliding with the image.
 - Tablet 1024px: the original image-weighted split is preserved to avoid an undersized media column.
 - Mobile 390px: the headline returns to the full single-column width (336px), with no horizontal overflow.
+
+## Product listing conversion pass — 29/08/2026
+
+The `/san-pham` page is a persuade surface: a visitor should understand the two product lines, see the entry price and move to one clear next step without parsing packaging units or a duplicate notice.
+
+### Findings and fixes
+
+| Priority | Finding | Applied fix | Verification |
+| --- | --- | --- | --- |
+| P1 | The price was visually subordinate to the roast/flavour metadata and the unit suffix added noise to a first scan. | Rebuilt the compact price block with an uppercase “Giá từ” label, a larger green amount, optional compare-at price support and a sale badge that renders only when supplied by product data. Removed `/1.000 g`, `/250 g` and “2 quy cách” from listing cards; those details remain on product detail pages. | Desktop and 390px browser measurements: amount is the strongest card datum, card width stays within the container, and the forbidden suffixes are absent. |
+| P1 | The instruction notice repeated the page title and CTA intent, adding friction before the product comparison. | Removed the redundant `InfoNotice` from the listing surface. | DOM audit: zero `.infoNotice` nodes on `/san-pham`; reading order is title → two product choices → price → CTA. |
+| P2 | Availability was buried in the detail route even though it reduces purchase hesitation at the decision point. | Added a compact “Đang nhận đơn” status with a semantic success color and status dot below the price. | Browser audit confirms it remains readable on both product cards and does not shift the CTA out of the card. |
+
+### Pricing honesty rule
+
+The component accepts an optional `compareAtPrice` per SKU, but the current catalog does not invent an old price or discount percentage. When commercial data is approved, adding that field automatically renders the crossed-out anchor price and “Giá ưu đãi” label; until then, the UI keeps the current price prominent without a misleading claim.
+
+### Verification
+
+- `npm run typecheck`: pending final pass.
+- `npm run lint`: pending final pass.
+- `npm run build`: pending final pass.
+- Browser audit at 1280px and 390px: no horizontal overflow (scrollbar delta only), 48px CTA target, no duplicate notice, and no unit/“quy cách” suffix in compact cards.

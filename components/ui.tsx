@@ -22,6 +22,9 @@ export function InfoNotice({ children, tone = "info" }: { children: ReactNode; t
 }
 
 export function ProductCard({ product, compact = false }: { product: Product; compact?: boolean }) {
+  const featuredSku = product.sku[0];
+  const hasSalePrice = Boolean(featuredSku.compareAtPrice && featuredSku.compareAtPrice !== featuredSku.price);
+
   return (
     <article className={`productCard productCard--${product.line}${compact ? " productCard--compact" : ""}`}>
       <div className="productCardImage">
@@ -35,7 +38,15 @@ export function ProductCard({ product, compact = false }: { product: Product; co
         <p className="productCardFlavor">{product.flavor.join(" · ")}</p>
         <p className="meta">{product.roast}</p>
         {compact ? (
-          <p className="productCardPrice"><strong>Từ {product.sku[0].price}</strong><span> / {product.sku[0].weight}{product.sku.length > 1 ? ` · ${product.sku.length} quy cách` : ""}</span></p>
+          <>
+            <div className={`productCardPrice${hasSalePrice ? " productCardPrice--sale" : ""}`} aria-label={`Giá từ ${featuredSku.price}`}>
+              <span className="productCardPriceLabel">Giá từ</span>
+              <strong>{featuredSku.price}</strong>
+              {hasSalePrice ? <del>{featuredSku.compareAtPrice}</del> : null}
+            </div>
+            {hasSalePrice ? <span className="productCardSavings">Giá ưu đãi</span> : null}
+            <p className="productCardAvailability">{featuredSku.availability}</p>
+          </>
         ) : (
           <>
             <ul className="skuList" aria-label="Quy cách sản phẩm">
