@@ -7,9 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: lamora
     restart: always
-    env_file:
-      - .env
-    # Các container nội bộ có thể gọi next-app thông qua cổng 3000
+    environment:
+      - NODE_ENV=production
     expose:
       - "3000"
     networks:
