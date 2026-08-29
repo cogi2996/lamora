@@ -3,13 +3,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navigation } from "@/lib/content";
 import styles from "./site-header.module.css";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [open]);
 
   return (
     <header className={styles.header}>
@@ -52,6 +68,7 @@ export function SiteHeader() {
           <Link className={styles.language} href="/en" lang="en">EN</Link>
         </nav>
       </div>
+      {open ? <button className={styles.menuBackdrop} type="button" tabIndex={-1} aria-label="Đóng điều hướng" onClick={() => setOpen(false)} /> : null}
     </header>
   );
 }

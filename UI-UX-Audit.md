@@ -116,3 +116,21 @@ The repository was reviewed against Motion for React, GSAP and Lenis. Motion is 
 - Tap and hover feedback stays within the 44–48px controls, does not move surrounding content, and is not applied to product imagery.
 - `MotionConfig reducedMotion="user"` follows the device preference: transform/layout movement is reduced while the selected color/state and live summary remain visible.
 - Browser checks at 390px and 1440px confirmed readable controls, correct state changes and no horizontal overflow.
+
+## Senior UI/UX audit pass — 29/08/2026
+
+The reusable audit brief is captured in [`UIUX-AUDIT-PROMPT.md`](./UIUX-AUDIT-PROMPT.md). This pass applied it across the eight public routes, with the header/navigation and contact form treated as the highest-leverage shared surfaces.
+
+### Findings and fixes
+
+| Priority | Finding | Applied fix | Verification |
+| --- | --- | --- | --- |
+| P1 | Mobile navigation opened abruptly and left the page underneath visually competing with the menu. | Added a layered backdrop, fade/slide entrance, click-away close, Escape close and scroll lock while open. | 390px browser check; menu state has no overflow and underlying content is de-emphasized. |
+| P1 | Text navigation rows rendered at 44px despite the mobile interaction rule targeting 48px. | Explicitly set mobile text links to 48px minimum height. | DOM measurements at 390px. |
+| P2 | “Email hoặc số điện thoại” gave no example and used an email keyboard hint for two input types. | Added a concrete placeholder and neutral text input mode while preserving email autocomplete. | Form smoke check; label, helper text and required state remain connected. |
+
+### Remaining recommendations
+
+- Add a dedicated English navigation/footer copy set if `/en` becomes a full locale rather than a short English landing page.
+- Replace the preview contact path with the production lead endpoint before launch; test timeout, retry and duplicate-submit behavior against the real service.
+- Transcode the large editorial images/videos and re-measure LCP on a throttled mobile profile.

@@ -53,7 +53,7 @@ export function ContactForm({ defaultAudience = "b2b" }: { defaultAudience?: "b2
       <label htmlFor="contact-name">Họ và tên</label>
       <input id="contact-name" name="name" autoComplete="name" minLength={2} required aria-invalid={state === "error" ? true : undefined} aria-describedby={state === "error" ? "contact-error" : undefined} />
       <label htmlFor="contact-detail">Email hoặc số điện thoại</label>
-      <input id="contact-detail" name="contact" inputMode="email" autoComplete="email" required aria-describedby={state === "error" ? "contact-help contact-error" : "contact-help"} aria-invalid={state === "error" ? true : undefined} />
+      <input id="contact-detail" name="contact" inputMode="text" autoComplete="email" placeholder="email@tenmien.vn hoặc 09xx xxx xxx" required aria-describedby={state === "error" ? "contact-help contact-error" : "contact-help"} aria-invalid={state === "error" ? true : undefined} />
       <p id="contact-help" className="helper">Dùng thông tin thuận tiện nhất để Lamora liên hệ lại.</p>
       <label htmlFor="contact-audience">Bạn đang tìm cho</label>
       <select id="contact-audience" name="audience" defaultValue={defaultAudience}>
