@@ -3,6 +3,7 @@ import { Be_Vietnam_Pro, Lora } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { LanguageProvider } from "@/components/language-provider";
 
 export const metadata: Metadata = {
   title: { default: "Lamora Coffee", template: "%s — Lamora Coffee" },
@@ -26,7 +27,7 @@ const displayFont = Lora({
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="vi" className={`${bodyFont.variable} ${displayFont.variable}`}>
-      <body><SiteHeader />{children}<SiteFooter /></body>
+      <body><LanguageProvider><SiteHeader />{children}<SiteFooter /></LanguageProvider></body>
     </html>
   );
 }

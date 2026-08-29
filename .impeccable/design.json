@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-29T00:00:00.000Z",
+  "title": "Design System: Lamora Coffee",
+  "extensions": {
+    "shadows": [
+      { "name": "card-rest", "value": "0 8px 24px rgb(47 39 31 / .05)", "purpose": "Quiet separation for actionable cards." },
+      { "name": "card-hover", "value": "0 18px 40px rgb(47 39 31 / .12)", "purpose": "Pointer feedback on cards." },
+      { "name": "form-elevation", "value": "0 12px 30px rgb(47 39 31 / .07)", "purpose": "Separates the contact form from the canvas." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "ease", "purpose": "Short, interruptible state transitions." },
+      { "name": "rise-in", "value": ".7s", "purpose": "One authored entrance moment on the primary hero and product media." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "767px" },
+      { "name": "tablet", "value": "1023px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The dominant next action on a section.",
+      "html": "<button class=\"ds-btn-primary\">Khám phá sản phẩm</button>",
+      "css": ".ds-btn-primary { min-height: 48px; padding: 11px 20px; border: 1px solid transparent; border-radius: 999px; background: #30452f; color: #fffdf8; font: 600 14px/1.2 'Be Vietnam Pro', Arial, sans-serif; cursor: pointer; transition: background-color .24s ease, transform .24s ease, box-shadow .24s ease; } .ds-btn-primary:hover { background: #263a25; transform: translateY(-2px); box-shadow: 0 10px 24px rgb(47 39 31 / .12); } .ds-btn-primary:focus-visible { outline: 3px solid #b38a54; outline-offset: 4px; }"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A concise product choice with audience, price and next action.",
+      "html": "<article class=\"ds-card\"><p class=\"ds-card-label\">Dành cho quán cà phê</p><h3>Signature Blend</h3><p>Ổn định cho vận hành quán.</p><a class=\"ds-card-link\" href=\"#\">Xem sản phẩm</a></article>",
+      "css": ".ds-card { padding: 32px; border: 1px solid #cfc2ae; border-radius: 20px; background: #fffdf8; color: #2f271f; box-shadow: 0 8px 24px rgb(47 39 31 / .05); } .ds-card-label { color: #756b5f; font: 700 11px/1.2 'Be Vietnam Pro', Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; } .ds-card h3 { margin: 12px 0 8px; font: 600 32px/1.15 'Lora', Georgia, serif; } .ds-card-link { display: inline-flex; min-height: 44px; align-items: center; color: #30452f; font: 600 14px/1.2 'Be Vietnam Pro', Arial, sans-serif; } .ds-card-link:focus-visible { outline: 3px solid #b38a54; outline-offset: 4px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A labelled contact field with clear focus treatment.",
+      "html": "<label class=\"ds-field\">Email<input type=\"email\" placeholder=\"you@example.com\"></label>",
+      "css": ".ds-field { display: grid; gap: 8px; color: #2f271f; font: 600 14px/1.2 'Be Vietnam Pro', Arial, sans-serif; } .ds-field input { min-height: 48px; padding: 12px 16px; border: 1px solid #cfc2ae; border-radius: 12px; background: #fffdf8; color: #2f271f; font: 400 16px/1.65 'Be Vietnam Pro', Arial, sans-serif; } .ds-field input:focus { border-color: #30452f; outline: 3px solid rgb(179 138 84 / .42); outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Grounded Ritual",
+    "overview": "A quiet Vietnamese coffee palette, editorial typography and generous space help visitors choose quickly, then slow down for origin and brewing detail.",
+    "keyCharacteristics": ["Warm earthy surfaces", "One confident action color", "Message-first mobile hierarchy", "Useful, honest content"],
+    "rules": [
+      { "name": "The One Action Rule", "body": "Each section has one dominant next step.", "section": "colors" }
+    ],
+    "dos": ["Do make audience, price and size scannable.", "Do use the poster as the reduced-motion video alternative."],
+    "donts": ["Don't hide the first CTA below a full-viewport mobile image.", "Don't claim a contact request was delivered without an endpoint."]
+  }
+}

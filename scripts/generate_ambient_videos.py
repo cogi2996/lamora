@@ -3,6 +3,10 @@
 The image-generation tool supplies still artwork. For the website background,
 we turn each poster into a short MP4 with a very subtle Ken Burns motion. The
 poster remains available as a no-motion and unsupported-video fallback.
+
+Some ambient videos are licensed stock footage and are checked into
+``public/media`` directly. Those files take precedence over generated loops so
+rerunning this helper never replaces an approved source video.
 """
 
 from pathlib import Path
@@ -20,6 +24,11 @@ MEDIA.mkdir(parents=True, exist_ok=True)
 
 def make_loop(source_name: str, output_name: str, *, seed: int) -> None:
     source = EDITORIAL / source_name
+    output = MEDIA / output_name
+    if output.exists():
+        print(f"Preserved existing ambient video: {output}")
+        return
+
     image = np.asarray(Image.open(source).convert("RGB"))
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     height, width = image.shape[:2]
@@ -29,7 +38,7 @@ def make_loop(source_name: str, output_name: str, *, seed: int) -> None:
     frames = fps * seconds
 
     writer = cv2.VideoWriter(
-        str(MEDIA / output_name),
+        str(output),
         cv2.VideoWriter_fourcc(*"mp4v"),
         fps,
         (out_width, out_height),

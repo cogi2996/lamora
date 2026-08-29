@@ -1,11 +1,83 @@
-.footer { background: var(--color-signature-accent); color: var(--color-signature-text-primary); padding-block: clamp(3rem, 7vw, 5rem) var(--space-2xl); border-top: 1px solid rgb(255 248 237 / .16); }
-.grid { display: grid; grid-template-columns: 1.8fr .8fr 1.2fr; gap: clamp(2rem, 5vw, 5rem); }
-.logo { width: min(260px, 100%); height: auto; }
-.grid p { color: var(--color-signature-text-secondary); max-width: 36ch; }
-.heading { margin: 0 0 var(--space-sm); color: var(--color-signature-text-primary) !important; font: var(--font-eyebrow) !important; letter-spacing: .14em; text-transform: uppercase; }
-.links, .address { display: flex; flex-direction: column; gap: var(--space-sm); font: var(--font-body-sm); }
-.address { font-style: normal; }
-.links a, .address a { min-height: 44px; display: flex; align-items: center; }
-.links a, .address a { color: var(--color-signature-text-secondary); transition: color .2s ease, transform .2s ease; }
+.footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--color-signature-accent);
+  color: var(--color-signature-text-primary);
+  padding-block: clamp(3.5rem, 8vw, 6rem) var(--space-xl);
+  border-top: 1px solid rgb(255 248 237 / .16);
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -5%;
+  bottom: -11rem;
+  width: min(86rem, 112vw);
+  height: 34rem;
+  background: url("/images/brand/lamora-mountain-line-art.svg") center bottom / cover no-repeat;
+  opacity: .14;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.footer > .container { position: relative; z-index: 1; }
+
+.intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  border-bottom: 1px solid rgb(255 248 237 / .18);
+}
+
+.brand { max-width: 30rem; }
+.logo { display: block; width: min(240px, 100%); height: auto; }
+.brand p { max-width: 34ch; margin: var(--space-lg) 0 0; color: var(--color-signature-text-secondary); }
+.signature { color: var(--color-focus-ring); font: 600 clamp(3rem, 7vw, 5.5rem)/.8 var(--font-family-display); letter-spacing: -.08em; opacity: .8; }
+.signature span { display: inline-block; margin-inline: .08em; color: var(--color-signature-text-secondary); font-size: .45em; vertical-align: .55em; }
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 8vw, 8rem);
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+}
+
+.heading { margin: 0 0 var(--space-md); color: var(--color-signature-text-primary); font: var(--font-eyebrow); letter-spacing: .14em; text-transform: uppercase; }
+.links, .address { display: flex; flex-direction: column; gap: .35rem; font: var(--font-body-sm); }
+.address { max-width: 32rem; font-style: normal; }
+.address span { color: var(--color-signature-text-secondary); line-height: 1.6; }
+.links a, .address a { display: flex; align-items: center; min-height: 44px; color: var(--color-signature-text-secondary); transition: color .2s ease, transform .2s ease; }
 .links a:hover, .address a:hover { color: var(--color-signature-text-primary); transform: translateX(3px); }
-@media (max-width: 767px) { .grid { grid-template-columns: 1fr; } .links a, .address a { min-height: 48px; } }
+.links a:focus-visible, .address a:focus-visible { color: var(--color-signature-text-primary); }
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgb(255 248 237 / .18);
+  color: var(--color-signature-text-secondary);
+  font: var(--font-body-sm);
+}
+
+@media (max-width: 767px) {
+  .footer { padding-block: var(--space-3xl) var(--space-lg); }
+  .footer::before { right: -20rem; bottom: -6rem; width: 54rem; height: 24rem; opacity: .12; }
+  .intro { align-items: flex-start; }
+  .signature { display: none; }
+  .grid { grid-template-columns: 1fr; gap: var(--space-2xl); padding-block: var(--space-2xl); }
+  .links a, .address a { min-height: 48px; }
+  .bottom { align-items: flex-start; flex-direction: column; gap: var(--space-xs); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .links a,
+  .address a { transition: none; }
+  .links a:hover,
+  .address a:hover { transform: none; }
+}
