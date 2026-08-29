@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  lamora:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lamora
+    restart: always
+    environment:
+      - NODE_ENV=production
+    # Đảm bảo file .env nằm chung thư mục với docker-compose.yml
+    env_file:
+      - .env
+    # Các container nội bộ có thể gọi next-app thông qua cổng 3000
+    expose:
+      - "3000"
+    networks:
+      - shared-web-network
+
+networks:
+  shared-web-network:
+    external: true

@@ -45,7 +45,7 @@ export const products: readonly Product[] = [
       "Một blend rõ vị, ổn định cho vận hành quán, với nốt chocolate đậm, hạt và hậu vị êm.",
     flavor: ["Dark chocolate", "Nutty", "Smooth"],
     roast: "Medium–dark roast",
-    sku: [{ code: "SIG-1000", weight: "1.000 g", price: "420.000 ₫", availability: "Đang nhận đơn" }],
+    sku: [{ code: "SIG-1000", weight: "1.000 g", price: "420.000 ₫", compareAtPrice: "490.000 ₫", availability: "Đang nhận đơn" }],
     purchaseChannels: ["Tư vấn trực tiếp", "Đặt hàng cho quán"],
     b2bMinimum: "Từ 10 túi mỗi tháng",
     image: "/images/products/lamora-signature-sig-1000-front.png",
@@ -60,7 +60,7 @@ export const products: readonly Product[] = [
       { label: "Hương vị", value: "Ổn định", body: "Dark chocolate · Nutty · Smooth" },
       { label: "Mức rang", value: "Medium–dark", body: "Đậm vừa, dễ cân chỉnh" },
       { label: "Dạng hạt", value: "Whole bean", body: "Xay theo công thức của quán" },
-      { label: "Quy cách", value: "1.000 g", body: "Phù hợp nhịp vận hành" },
+      { label: "Cỡ túi", value: "1.000 g", body: "Phù hợp nhịp vận hành" },
     ],
     profile: {
       title: "Đậm vừa đủ. Mượt trong từng lớp vị.",
@@ -78,8 +78,8 @@ export const products: readonly Product[] = [
     flavor: ["Light chocolate", "Floral", "Balanced"],
     roast: "Medium roast",
     sku: [
-      { code: "ORI-250", weight: "250 g", price: "165.000 ₫", availability: "Đang nhận đơn" },
-      { code: "ORI-500", weight: "500 g", price: "295.000 ₫", availability: "Đang nhận đơn", image: "/images/products/lamora-original-ori-500-front-mvp.png", imageAlt: "Túi cà phê hạt Lamora Original Blend 500 gam" },
+      { code: "ORI-250", weight: "250 g", price: "165.000 ₫", compareAtPrice: "195.000 ₫", availability: "Đang nhận đơn" },
+      { code: "ORI-500", weight: "500 g", price: "295.000 ₫", compareAtPrice: "345.000 ₫", availability: "Đang nhận đơn", image: "/images/products/lamora-original-ori-500-front-mvp.png", imageAlt: "Túi cà phê hạt Lamora Original Blend 500 gam" },
     ],
     purchaseChannels: ["Website", "Sàn thương mại điện tử", "Zalo OA"],
     image: "/images/products/lamora-original-ori-250-front.png",
@@ -94,7 +94,7 @@ export const products: readonly Product[] = [
       { label: "Hương vị", value: "Cân bằng", body: "Light chocolate · Floral · Balanced" },
       { label: "Mức rang", value: "Medium", body: "Sáng vị, dễ làm quen" },
       { label: "Dạng hạt", value: "Whole bean", body: "Linh hoạt cho nhiều cách pha" },
-      { label: "Quy cách", value: "250 g / 500 g", body: "Chọn theo tần suất pha" },
+      { label: "Cỡ túi", value: "250 g / 500 g", body: "Chọn theo tần suất pha" },
     ],
     profile: {
       title: "Nhẹ nhàng mở vị. Cân bằng để thưởng thức mỗi ngày.",

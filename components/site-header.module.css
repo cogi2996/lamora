@@ -47,8 +47,11 @@
 .navigation > .navLink:hover, .navigation > .navLink[aria-current="page"] { color: var(--color-text-primary); }
 .navigation > .navLink:hover::after, .navigation > .navLink[aria-current="page"]::after { transform: scaleX(1); }
 .navigation > .cta { white-space: nowrap; }
-.language { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border-left: 1px solid var(--color-border-default); padding-left: var(--space-md); color: var(--color-text-secondary); font-size: .75rem; letter-spacing: .12em; }
-.language:hover { color: var(--color-action-primary); }
+.languageSwitcher { display: inline-flex; align-items: center; gap: .2rem; min-height: 44px; border-left: 1px solid var(--color-border-default); padding-left: var(--space-md); }
+.languageOption { display: inline-flex; align-items: center; justify-content: center; gap: .35rem; min-width: 42px; min-height: 36px; border: 1px solid transparent; border-radius: var(--radius-pill); padding: .35rem .5rem; background: transparent; color: var(--color-text-secondary); font: var(--font-label); font-size: .68rem; letter-spacing: .08em; cursor: pointer; transition: color .2s ease, background-color .2s ease, border-color .2s ease; }
+.languageOption svg { width: 20px; height: 13px; display: block; }
+.languageOption:hover, .languageOption:focus-visible { color: var(--color-text-primary); border-color: var(--color-border-default); }
+.languageOption--active { color: var(--color-action-primary); background: var(--color-signature-surface); border-color: var(--color-border-default); }
 
 .menuButton {
   display: none;
@@ -95,7 +98,7 @@
   .navigation.open { visibility: visible; opacity: 1; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
   .navigation > a,
   .navigation > .navLink { min-height: 48px; }
-  .language { justify-content: flex-start; border-left: 0; border-top: 1px solid var(--color-border-default); padding: var(--space-sm) 0 0; }
+  .languageSwitcher { justify-content: flex-start; border-left: 0; border-top: 1px solid var(--color-border-default); padding: var(--space-sm) 0 0; }
   .navigation > .navLink::after { display: none; }
   .menuBackdrop { display: block; position: fixed; z-index: 0; inset: 76px 0 0; width: 100%; border: 0; padding: 0; background: rgb(47 39 31 / .42); cursor: default; animation: menu-backdrop-in .2s ease both; }
 }

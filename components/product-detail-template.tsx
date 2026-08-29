@@ -1,40 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/content";
-import { ContactBand, Eyebrow, InfoNotice, SectionHeader } from "./ui";
+import { ContactBand, Eyebrow, PriceDisplay, SectionHeader } from "./ui";
 import { ProductSizeSelector } from "./product-size-selector";
+import { LanguageText } from "./language-provider";
+import { productI18n } from "@/lib/i18n";
 
 export function ProductDetailTemplate({ product }: { product: Product }) {
   const featuredSku = product.sku[0];
-  const hasSalePrice = Boolean(featuredSku.compareAtPrice && featuredSku.compareAtPrice !== featuredSku.price);
+  const showSizeSection = product.line === "original";
+  const copy = productI18n[product.slug];
 
   return (
     <main id="main-content" className={`productPage productPage--${product.line}`}>
       <section className={`productHero productHero--${product.line}`}>
+        {product.line === "signature" ? <Image className="productHeroLineArt" src="/images/brand/lamora-mountain-line-art.svg" alt="" aria-hidden="true" width={1536} height={768} sizes="(max-width: 767px) 125vw, 70vw" /> : null}
         <div className="container productHeroGrid">
           <div className="productHeroCopy">
-            <Eyebrow>{product.eyebrow}</Eyebrow>
+            <Eyebrow><LanguageText {...copy.eyebrow} /></Eyebrow>
             <h1>{product.name}</h1>
-            <p className="lead">{product.description}</p>
-            <ul className="productHeroTags" aria-label="Đặc tính sản phẩm">
-              {product.flavor.map((item) => <li key={item}>{item}</li>)}
-              <li>{product.roast}</li>
-            </ul>
-            <div className={`productHeroPrice${hasSalePrice ? " productHeroPrice--sale" : ""}`}>
-              <span>Giá từ</span>
-              <strong>{featuredSku.price}</strong>
-              {hasSalePrice ? <del>{featuredSku.compareAtPrice}</del> : null}
-            </div>
+            <p className="lead"><LanguageText {...copy.description} /></p>
+            <PriceDisplay sku={featuredSku} context="hero" />
             <div className="actions">
-              <Link className="button buttonPrimary" href={`/lien-he?nhom=${product.line === "signature" ? "b2b" : "b2c"}&san-pham=${product.slug}`}>Liên hệ tư vấn</Link>
-              <Link className="button buttonSecondary" href={product.line === "original" ? "/huong-dan-pha" : "/san-pham"}>{product.line === "original" ? "Xem cách pha" : "Xem các dòng khác"}</Link>
+              <Link className="button buttonPrimary" href={`/lien-he?nhom=${product.line === "signature" ? "b2b" : "b2c"}&san-pham=${product.slug}`}><LanguageText vi="Liên hệ tư vấn" en="Get advice" /></Link>
+              <Link className="button buttonSecondary" href={product.line === "original" ? "/huong-dan-pha" : "/san-pham"}><LanguageText vi={product.line === "original" ? "Xem cách pha" : "Xem các dòng khác"} en={product.line === "original" ? "See brew guide" : "See other blends"} /></Link>
             </div>
           </div>
           <div className="productHeroMedia">
             <div className="productHeroMediaCard">
-              <span className="productHeroMediaLabel">Lamora Coffee · {product.line === "signature" ? "Cho quán" : "Pha tại nhà"}</span>
+              <span className="productHeroMediaLabel">Lamora Coffee · <LanguageText {...copy.featureAudience} /></span>
               <Image className="packshot" src={product.image} alt={product.imageAlt} width={2048} height={2048} sizes="(max-width: 767px) 78vw, 50vw" priority />
-              <div className="productHeroMediaMeta"><span>{featuredSku.code}</span><span>{featuredSku.weight} · Whole bean</span></div>
             </div>
           </div>
         </div>
@@ -44,56 +39,24 @@ export function ProductDetailTemplate({ product }: { product: Product }) {
         <div className="container productFeatureGrid">
           <Image src={product.feature.image} alt={product.feature.imageAlt} width={1536} height={1024} sizes="(max-width: 767px) 100vw, 50vw" />
           <div className="productFeatureCopy">
-            <Eyebrow>{product.line === "signature" ? "Cho quán" : "Pha tại nhà"}</Eyebrow>
-            <h2>{product.feature.title}</h2>
-            <p>{product.feature.body}</p>
+            <Eyebrow><LanguageText {...copy.featureAudience} /></Eyebrow>
+            <h2><LanguageText vi={product.feature.title} en={copy.featureTitle.en} /></h2>
+            <p><LanguageText vi={product.feature.body} en={copy.featureBody.en} /></p>
           </div>
         </div>
       </section>
 
-      <section className="section productHighlights">
-        <div className="container">
-          <SectionHeader eyebrow="Điểm chính" title={product.line === "signature" ? "Một blend rõ vị, sẵn sàng cho quầy pha chế." : "Nhẹ nhàng mở vị cho những lần pha cân bằng."} body="Những thông tin cốt lõi để bạn chọn đúng dòng và bắt đầu nhanh hơn." />
-          <div className="productHighlightsGrid">
-            {product.highlights.map((item) => (
-              <article key={item.label} className="productHighlight">
-                <span>{item.label}</span>
-                <h3>{item.value}</h3>
-                <p>{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={`section productProfile productProfile--${product.line}`}>
-        <div className="container productProfileGrid">
-          <div>
-            <Eyebrow>Flavor profile</Eyebrow>
-            <h2>{product.profile.title}</h2>
-            <p>{product.profile.body}</p>
-          </div>
-          <dl className="productProfileFacts">
-            <div><dt>Hương vị</dt><dd>{product.flavor.join(" · ")}</dd></div>
-            <div><dt>Mức rang</dt><dd>{product.roast}</dd></div>
-            <div><dt>Dạng hạt</dt><dd>Whole bean</dd></div>
+      {showSizeSection ? (
+        <section className="section productDetails container">
+          <SectionHeader eyebrow={<LanguageText vi="Chọn cỡ túi" en="Choose your bag" />} title={<LanguageText vi="Chọn theo nhịp thưởng thức của bạn." en="Choose the size that fits your rhythm." />} body={<LanguageText vi="Bắt đầu với túi nhỏ, hoặc chọn túi lớn cho những ngày pha thường xuyên." en="Start with a smaller bag, or choose a larger one for frequent brewing." />} />
+          <ProductSizeSelector options={product.sku.map((item) => ({ size: item.weight, code: item.code, price: item.price, compareAtPrice: item.compareAtPrice, image: item.image ?? product.image, imageAlt: item.imageAlt ?? product.imageAlt }))} />
+          <dl className="productFacts">
+            <div><dt><LanguageText vi="Dành cho" en="For" /></dt><dd><LanguageText {...copy.audience} /></dd></div>
+            <div><dt><LanguageText vi="Cỡ túi" en="Bag size" /></dt><dd>{product.sku.map((item) => item.weight).join(" · ")}</dd></div>
+            <div><dt><LanguageText vi="Mã SKU" en="SKU" /></dt><dd>{product.sku.map((item) => item.code).join(" · ")}</dd></div>
           </dl>
-        </div>
-      </section>
-
-      <section className="section productDetails container">
-        <SectionHeader eyebrow="Chọn quy cách" title={product.line === "original" ? "Chọn theo nhịp thưởng thức của bạn." : "Quy cách phù hợp cho nhịp vận hành."} body={product.line === "original" ? "Bắt đầu với túi nhỏ, hoặc chọn quy cách lớn cho những ngày pha thường xuyên." : "Một quy cách gọn cho quầy pha chế cần sự ổn định mỗi ngày."} />
-        <ProductSizeSelector options={product.sku.map((item) => ({ size: item.weight, code: item.code, price: item.price, image: item.image ?? product.image, imageAlt: item.imageAlt ?? product.imageAlt }))} />
-        <dl className="productFacts">
-          <div><dt>Dành cho</dt><dd>{product.audience}</dd></div>
-          <div><dt>Dạng sản phẩm</dt><dd>Whole bean</dd></div>
-          <div><dt>Quy cách</dt><dd>{product.sku.map((item) => item.weight).join(" · ")}</dd></div>
-          <div><dt>Mã SKU</dt><dd>{product.sku.map((item) => item.code).join(" · ")}</dd></div>
-          <div><dt>Tình trạng</dt><dd>{product.sku.map((item) => item.availability).join(" · ")}</dd></div>
-          <div><dt>Kênh mua</dt><dd>{product.purchaseChannels.join(" · ")}</dd></div>
-        </dl>
-        <InfoNotice>Đặt hàng qua {product.purchaseChannels.join(", ")}. {product.b2bMinimum ? `Đơn quán: ${product.b2bMinimum.toLowerCase()}.` : "Đơn tại nhà được đóng gói theo từng quy cách."}</InfoNotice>
-      </section>
+        </section>
+      ) : null}
 
       <div className="container"><ContactBand audience={product.line === "signature" ? "b2b" : "b2c"} /></div>
     </main>

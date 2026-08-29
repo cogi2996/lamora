@@ -2,16 +2,22 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Product } from "@/lib/content";
+import { LanguageText } from "./language-provider";
+import { lineName, productI18n } from "@/lib/i18n";
+import { getPriceSummary } from "@/lib/pricing";
+import { LocalizedPrice, PriceDisplay } from "./price-display";
+
+export { PriceDisplay } from "./price-display";
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return <p className="eyebrow">{children}</p>;
 }
 
-export function SectionHeader({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
+export function SectionHeader({ eyebrow, title, body, id }: { eyebrow: ReactNode; title: ReactNode; body?: ReactNode; id?: string }) {
   return (
     <header className="sectionHeader">
       <Eyebrow>{eyebrow}</Eyebrow>
-      <h2>{title}</h2>
+      <h2 id={id}>{title}</h2>
       {body ? <p>{body}</p> : null}
     </header>
   );
@@ -23,42 +29,33 @@ export function InfoNotice({ children, tone = "info" }: { children: ReactNode; t
 
 export function ProductCard({ product, compact = false }: { product: Product; compact?: boolean }) {
   const featuredSku = product.sku[0];
-  const hasSalePrice = Boolean(featuredSku.compareAtPrice && featuredSku.compareAtPrice !== featuredSku.price);
+  const copy = productI18n[product.slug];
 
   return (
     <article className={`productCard productCard--${product.line}${compact ? " productCard--compact" : ""}`}>
       <div className="productCardImage">
-        <span className="productCardLine">{product.line === "signature" ? "Signature series" : "Original series"}</span>
+        <span className="productCardLine"><LanguageText {...lineName(product.line)} /></span>
         <Image src={product.image} alt={product.imageAlt} width={2048} height={2048} sizes="(max-width: 767px) 80vw, 40vw" />
       </div>
       <div className="productCardBody">
-        <Eyebrow>{product.audience}</Eyebrow>
+        <Eyebrow><LanguageText {...copy.audience} /></Eyebrow>
         <h3>{product.name}</h3>
-        <p>{compact ? product.description.split(",")[0] + "." : product.description}</p>
-        <p className="productCardFlavor">{product.flavor.join(" · ")}</p>
-        <p className="meta">{product.roast}</p>
+        <p>{compact ? <LanguageText vi={`${product.description.split(",")[0]}.`} en={`${copy.description.en.split(",")[0]}.`} /> : <LanguageText {...copy.description} />}</p>
         {compact ? (
-          <>
-            <div className={`productCardPrice${hasSalePrice ? " productCardPrice--sale" : ""}`} aria-label={`Giá từ ${featuredSku.price}`}>
-              <span className="productCardPriceLabel">Giá từ</span>
-              <strong>{featuredSku.price}</strong>
-              {hasSalePrice ? <del>{featuredSku.compareAtPrice}</del> : null}
-            </div>
-            {hasSalePrice ? <span className="productCardSavings">Giá ưu đãi</span> : null}
-            <p className="productCardAvailability">{featuredSku.availability}</p>
-          </>
+          <PriceDisplay sku={featuredSku} />
         ) : (
           <>
-            <ul className="skuList" aria-label="Quy cách sản phẩm">
-              {product.sku.map((sku) => <li key={sku.code}><span><strong>{sku.weight}</strong><small>{sku.code}</small></span><b>{sku.price}</b></li>)}
+            <ul className="skuList" aria-label="Các cỡ túi sản phẩm / Available bag sizes">
+              {product.sku.map((sku) => {
+                const summary = getPriceSummary(sku);
+                return <li key={sku.code}><span><strong>{sku.weight}</strong><small>{sku.code}</small></span><span className="skuPrice"><b><LocalizedPrice value={summary.price} /></b>{summary.hasSale ? <del><LocalizedPrice value={summary.compareAtPrice ?? 0} /></del> : null}</span></li>;
+              })}
             </ul>
-            <p className="meta">Có thể đặt qua {product.purchaseChannels.join(" · ")}</p>
-            {product.b2bMinimum ? <p className="meta">Điều kiện quán: {product.b2bMinimum}.</p> : null}
           </>
         )}
         <div className="productCardActions">
-          <Link className="button buttonPrimary" href={`/san-pham/${product.slug}`}>Xem sản phẩm</Link>
-          <Link className="textLink" href={`/lien-he?nhom=${product.line === "signature" ? "b2b" : "b2c"}`}>Tư vấn</Link>
+          <Link className="button buttonPrimary" href={`/san-pham/${product.slug}`}><LanguageText vi="Xem sản phẩm" en="View product" /></Link>
+          <Link className="textLink" href={`/lien-he?nhom=${product.line === "signature" ? "b2b" : "b2c"}`}><LanguageText vi="Tư vấn" en="Talk to us" /></Link>
         </div>
       </div>
     </article>
@@ -67,23 +64,23 @@ export function ProductCard({ product, compact = false }: { product: Product; co
 
 export function TrustStrip() {
   const items = [
-    ["01", "100% cà phê nguyên chất", "Thông tin sản phẩm rõ ràng cho từng dòng."],
-    ["02", "Rang mộc nguyên bản", "Giữ trải nghiệm nhất quán từ hạt đến tách."],
-    ["03", "Chọn theo nhịp dùng", "Quy cách cho quán và những lần pha tại nhà."],
+    ["01", "100% cà phê nguyên chất", "Thông tin sản phẩm rõ ràng cho từng dòng.", "100% pure coffee", "Clear product information for every line."],
+    ["02", "Rang mộc nguyên bản", "Giữ trải nghiệm nhất quán từ hạt đến tách.", "Naturally roasted", "A consistent experience from bean to cup."],
+    ["03", "Chọn theo nhịp dùng", "Cỡ túi cho quán và những lần pha tại nhà.", "Choose your rhythm", "Bag sizes for cafés and home brewing."],
   ];
-  return <section className="trustStrip" aria-label="Điểm nổi bật của Lamora"><div className="container trustGrid">{items.map(([index, title, body]) => <article key={index} className="trustItem"><span>{index}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></section>;
+  return <section className="trustStrip" aria-label="Điểm nổi bật của Lamora"><div className="container trustGrid">{items.map(([index, title, body, titleEn, bodyEn]) => <article key={index} className="trustItem"><span>{index}</span><div><h3><LanguageText vi={title} en={titleEn} /></h3><p><LanguageText vi={body} en={bodyEn} /></p></div></article>)}</div></section>;
 }
 
 export function ContactBand({ audience = "general" }: { audience?: "b2b" | "b2c" | "general" }) {
   const copy = audience === "b2b"
-    ? ["Dành cho quán", "Bắt đầu từ nhu cầu vận hành thực tế.", "Nhận tư vấn"]
+    ? ["Dành cho quán", "Bắt đầu từ nhu cầu vận hành thực tế.", "Nhận tư vấn", "For cafés", "Start with your real service needs.", "Get advice"]
     : audience === "b2c"
-      ? ["Pha tại nhà", "Chọn quy cách phù hợp với nhịp pha của bạn.", "Tìm kênh mua"]
-      : ["Kết nối với Lamora", "Bạn đang chọn cho quán hay cho những lần pha tại nhà?", "Liên hệ Lamora"];
+      ? ["Pha tại nhà", "Chọn cỡ túi phù hợp với nhịp pha của bạn.", "Tìm kênh mua", "Home brewing", "Choose a bag size for your brewing rhythm.", "Find a retailer"]
+      : ["Kết nối với Lamora", "Bạn đang chọn cho quán hay cho những lần pha tại nhà?", "Liên hệ Lamora", "Connect with Lamora", "Choosing for a café or for home brewing?", "Contact Lamora"];
   return (
     <section className="contactBand">
-      <div><Eyebrow>{copy[0]}</Eyebrow><h2>{copy[1]}</h2></div>
-      <Link className="button buttonPrimary" href={`/lien-he${audience === "general" ? "" : `?nhom=${audience}`}`}>{copy[2]}</Link>
+      <div><Eyebrow><LanguageText vi={copy[0]} en={copy[3]} /></Eyebrow><h2><LanguageText vi={copy[1]} en={copy[4]} /></h2></div>
+      <Link className="button buttonPrimary" href={`/lien-he${audience === "general" ? "" : `?nhom=${audience}`}`}><LanguageText vi={copy[2]} en={copy[5]} /></Link>
     </section>
   );
 }
