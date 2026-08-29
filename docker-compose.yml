@@ -7,9 +7,6 @@ services:
       dockerfile: Dockerfile
     container_name: lamora
     restart: always
-    environment:
-      - NODE_ENV=production
-    # Đảm bảo file .env nằm chung thư mục với docker-compose.yml
     env_file:
       - .env
     # Các container nội bộ có thể gọi next-app thông qua cổng 3000
