@@ -104,3 +104,15 @@ The story hero lead was constrained by the shared 40rem child width. At a wide d
 - Nối form vào endpoint nhận lead thật và kiểm tra thông báo thành công trên thiết bị thật.
 - Kiểm tra lại font hiển thị sau khi deploy với đầy đủ dấu tiếng Việt và đo tương phản bằng công cụ accessibility.
 - Bổ sung kiểm thử người dùng cho ba mục tiêu: chọn dòng, chọn quy cách và gửi yêu cầu tư vấn.
+
+## Animation library audit — 29/08/2026
+
+The repository was reviewed against Motion for React, GSAP and Lenis. Motion is the best fit for this React 19 / Next App Router surface: it provides declarative gesture and layout feedback with a smaller conceptual footprint than an imperative timeline system, while avoiding a root-level scroll replacement.
+
+### Fix verified
+
+- `motion@13.1.1` is scoped to the existing client-side product-size selector; no global animation provider or smooth-scroll hijack was added.
+- The selected size uses a shared layout indicator that moves between options, making the relationship between the control and its updated price/SKU summary explicit.
+- Tap and hover feedback stays within the 44–48px controls, does not move surrounding content, and is not applied to product imagery.
+- `MotionConfig reducedMotion="user"` follows the device preference: transform/layout movement is reduced while the selected color/state and live summary remain visible.
+- Browser checks at 390px and 1440px confirmed readable controls, correct state changes and no horizontal overflow.
