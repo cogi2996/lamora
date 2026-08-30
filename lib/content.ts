@@ -132,10 +132,10 @@ export const brewMethods = [
 
 export const contact = {
   company: "Công ty TNHH Lamora Coffee",
-  address: "18 Nguyễn Văn Trỗi, Phường 15, Quận Phú Nhuận, Thành phố Hồ Chí Minh",
-  city: "Thành phố Hồ Chí Minh",
+  address: "R’chai Đức Trọng - Lâm Đồng - Việt Nam",
+  city: "Đức Trọng, Lâm Đồng",
   email: "hello@lamoracoffee.vn",
-  phone: "028 7300 2688",
+  phone: "0988.888.933",
   leadRecipient: "Bộ phận Tư vấn Lamora",
   hours: "Thứ Hai – Thứ Sáu, 08:30 – 17:30",
 } as const;
